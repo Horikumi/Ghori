@@ -172,7 +172,6 @@ async def del_back_playlist(client, CallbackQuery, _):
                         text=_["admin_6"].format(
                             mention, CallbackQuery.message.chat.title
                         ),
-                        reply_markup=close_markup(_),
                     )
                     try:
                         return await Anony.stop_stream(chat_id)
@@ -187,7 +186,6 @@ async def del_back_playlist(client, CallbackQuery, _):
                         text=_["admin_6"].format(
                             mention, CallbackQuery.message.chat.title
                         ),
-                        reply_markup=close_markup(_),
                     )
                     return await Anony.stop_stream(chat_id)
                 except:
