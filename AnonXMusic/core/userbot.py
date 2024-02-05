@@ -49,12 +49,7 @@ class Userbot(Client):
     async def start(self):
         LOGGER(__name__).info(f"Starting Assistants...")
         if config.STRING1:
-            await self.one.start()
-            try:
-                await self.one.join_chat("DevilsHeavenMF")
-                await self.one.join_chat("FallenAssociation")
-            except:
-                pass
+            await self.one.start()          
             assistants.append(1)
             try:
                 await self.one.send_message(config.LOGGER_ID, "Assistant Started")
@@ -70,12 +65,7 @@ class Userbot(Client):
             LOGGER(__name__).info(f"Assistant Started as {self.one.name}")
 
         if config.STRING2:
-            await self.two.start()
-            try:
-                await self.two.join_chat("DevilsHeavenMF")
-                await self.two.join_chat("FallenAssociation")
-            except:
-                pass
+            await self.two.start()          
             assistants.append(2)
             try:
                 await self.two.send_message(config.LOGGER_ID, "Assistant Started")
@@ -91,12 +81,7 @@ class Userbot(Client):
             LOGGER(__name__).info(f"Assistant Two Started as {self.two.name}")
 
         if config.STRING3:
-            await self.three.start()
-            try:
-                await self.three.join_chat("DevilsHeavenMF")
-                await self.three.join_chat("FallenAssociation")
-            except:
-                pass
+            await self.three.start()            
             assistants.append(3)
             try:
                 await self.three.send_message(config.LOGGER_ID, "Assistant Started")
@@ -113,11 +98,6 @@ class Userbot(Client):
 
         if config.STRING4:
             await self.four.start()
-            try:
-                await self.four.join_chat("DevilsHeavenMF")
-                await self.four.join_chat("FallenAssociation")
-            except:
-                pass
             assistants.append(4)
             try:
                 await self.four.send_message(config.LOGGER_ID, "Assistant Started")
@@ -134,11 +114,6 @@ class Userbot(Client):
 
         if config.STRING5:
             await self.five.start()
-            try:
-                await self.five.join_chat("DevilsHeavenMF")
-                await self.five.join_chat("FallenAssociation")
-            except:
-                pass
             assistants.append(5)
             try:
                 await self.five.send_message(config.LOGGER_ID, "Assistant Started")
