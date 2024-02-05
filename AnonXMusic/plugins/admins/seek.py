@@ -40,8 +40,7 @@ async def seek_comm(cli, message: Message, _, chat_id):
     else:
         if (duration_seconds - (duration_played + duration_to_skip)) <= 10:
             return await message.reply_text(
-                text=_["admin_23"].format(seconds_to_min(duration_played), duration),
-                reply_markup=close_markup(_),
+                text=_["admin_23"].format(seconds_to_min(duration_played), duration),                
             )
         to_seek = duration_played + duration_to_skip + 1
     mystic = await message.reply_text(_["admin_24"])
