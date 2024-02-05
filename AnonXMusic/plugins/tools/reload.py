@@ -91,11 +91,6 @@ async def close_menu(_, query: CallbackQuery):
     try:
         await query.answer()
         await query.message.delete()
-        umm = await query.message.reply_text(
-            f"Cʟᴏsᴇᴅ ʙʏ : {query.from_user.mention}"
-        )
-        await asyncio.sleep(7)
-        await umm.delete()
     except:
         pass
 
