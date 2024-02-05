@@ -211,8 +211,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             n, link = await YouTube.video(videoid, True)
             if n == 0:
                 return await CallbackQuery.message.reply_text(
-                    text=_["admin_7"].format(title),
-                    reply_markup=close_markup(_),
+                    text=_["admin_7"].format(title),                    
                 )
             try:
                 image = await YouTube.thumbnail(videoid, True)
