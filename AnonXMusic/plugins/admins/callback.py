@@ -137,7 +137,7 @@ async def del_back_playlist(client, CallbackQuery, _):
         await music_off(chat_id)
         await Anony.pause_stream(chat_id)
         await CallbackQuery.message.reply_text(
-            _["admin_2"].format(mention), reply_markup=close_markup(_)
+            _["admin_2"].format(mention)
         )
     elif command == "Resume":
         if await is_music_playing(chat_id):
@@ -146,16 +146,15 @@ async def del_back_playlist(client, CallbackQuery, _):
         await music_on(chat_id)
         await Anony.resume_stream(chat_id)
         await CallbackQuery.message.reply_text(
-            _["admin_4"].format(mention), reply_markup=close_markup(_)
+            _["admin_4"].format(mention)
         )
     elif command == "Stop" or command == "End":
         await CallbackQuery.answer()
         await Anony.stop_stream(chat_id)
         await set_loop(chat_id, 0)
         await CallbackQuery.message.reply_text(
-            _["admin_5"].format(mention), reply_markup=close_markup(_)
+            _["admin_5"].format(mention)
         )
-        await CallbackQuery.message.delete()
     elif command == "Skip" or command == "Replay":
         check = db.get(chat_id)
         if command == "Skip":
