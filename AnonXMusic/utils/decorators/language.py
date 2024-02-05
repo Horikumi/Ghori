@@ -14,11 +14,6 @@ def language(mystic):
                     disable_web_page_preview=True,
                 )
         try:
-            await message.delete()
-        except:
-            pass
-
-        try:
             language = await get_lang(message.chat.id)
             language = get_string(language)
         except:
