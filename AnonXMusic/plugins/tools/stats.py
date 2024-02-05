@@ -16,10 +16,10 @@ from AnonXMusic.plugins import ALL_MODULES
 from AnonXMusic.utils.database import get_served_chats, get_served_users, get_sudoers
 from AnonXMusic.utils.decorators.language import language, languageCB
 from AnonXMusic.utils.inline.stats import back_stats_buttons, stats_buttons
-from config import BANNED_USERS
+from config import BANNED_USERS, OWNER_ID
 
 
-@app.on_message(filters.command(["stats", "gstats"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["stats", "gstats"]) & filters.group & filters.user(OWNER_ID) & ~BANNED_USERS)
 @language
 async def stats_global(client, message: Message, _):
     upl = stats_buttons(_, True if message.from_user.id in SUDOERS else False)
