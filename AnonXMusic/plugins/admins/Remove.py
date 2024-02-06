@@ -124,10 +124,10 @@ async def rm_song(client, CallbackQuery, _):
                                 try:
                                                 await Anony.skip_stream(chat_id, link, video=status, image=image)
                                 except:
-                                                return await message.reply_text(_["call_6"])
+                                                return await CallbackQuery.message.reply_text(_["call_6"])
                                 button = stream_markup(_, musicid, userinfo, chat_id)
                                 img = await get_thumb(videoid)
-                                run = await message.reply_photo(
+                                run = await CallbackQuery.message.reply_photo(
                                                 photo=img,
                                                 caption=_["stream_1"].format(
                                                                 f"https://t.me/{app.username}?start=info_{videoid}",
@@ -140,7 +140,7 @@ async def rm_song(client, CallbackQuery, _):
                                 db[chat_id][0]["mystic"] = run
                                 db[chat_id][0]["markup"] = "tg"
                 elif "vid_" in queued:
-                                mystic = await message.reply_text(_["call_7"], disable_web_page_preview=True)
+                                mystic = await CallbackQuery.message.reply_text(_["call_7"], disable_web_page_preview=True)
                                 try:
                                                 file_path, direct = await YouTube.download(
                                                                 videoid,
@@ -160,7 +160,7 @@ async def rm_song(client, CallbackQuery, _):
                                                 return await mystic.edit_text(_["call_6"])
                                 button = stream_markup(_, musicid, userinfo, chat_id)
                                 img = await get_thumb(videoid)
-                                run = await message.reply_photo(
+                                run = await CallbackQuery.message.reply_photo(
                                                 photo=img,
                                                 caption=_["stream_1"].format(
                                                                 f"https://t.me/{app.username}?start=info_{videoid}",
@@ -177,7 +177,7 @@ async def rm_song(client, CallbackQuery, _):
                                 try:
                                                 await Anony.skip_stream(chat_id, videoid, video=status)
                                 except:
-                                                return await message.reply_text(_["call_6"])
+                                                return await CallbackQuery.message.reply_text(_["call_6"])
                                 button = stream_markup(_, musicid, userinfo, chat_id)
                                 run = await message.reply_photo(
                                                 photo=config.STREAM_IMG_URL,
@@ -199,10 +199,10 @@ async def rm_song(client, CallbackQuery, _):
                                 try:
                                                 await Anony.skip_stream(chat_id, queued, video=status, image=image)
                                 except:
-                                                return await message.reply_text(_["call_6"])
+                                                return await CallbackQuery.message.reply_text(_["call_6"])
                                 if videoid == "telegram":
                                                 button = stream_markup(_, musicid, userinfo, chat_id)
-                                                run = await message.reply_photo(
+                                                run = await CallbackQuery.message.reply_photo(
                                                                 photo=config.TELEGRAM_AUDIO_URL
                                                                 if str(streamtype) == "audio"
                                                                 else config.TELEGRAM_VIDEO_URL,
@@ -215,7 +215,7 @@ async def rm_song(client, CallbackQuery, _):
                                                 db[chat_id][0]["markup"] = "tg"
                                 elif videoid == "soundcloud":
                                                 button = stream_markup(_, musicid, userinfo, chat_id)
-                                                run = await message.reply_photo(
+                                                run = await CallbackQuery.message.reply_photo(
                                                                 photo=config.SOUNCLOUD_IMG_URL
                                                                 if str(streamtype) == "audio"
                                                                 else config.TELEGRAM_VIDEO_URL,
@@ -229,7 +229,7 @@ async def rm_song(client, CallbackQuery, _):
                                 else:
                                                 button = stream_markup(_, musicid, userinfo, chat_id)
                                                 img = await get_thumb(videoid)
-                                                run = await message.reply_photo(
+                                                run = await CallbackQuery.message.reply_photo(
                                                                 photo=img,
                                                                 caption=_["stream_1"].format(
                                                                                 f"https://t.me/{app.username}?start=info_{videoid}",
