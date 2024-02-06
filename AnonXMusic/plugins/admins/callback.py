@@ -86,10 +86,8 @@ async def del_back_playlist(client, CallbackQuery, _):
             except:
                 return await CallbackQuery.edit_message_text(f"ғᴀɪʟᴇᴅ.")
             try:
-                if current["vidid"] != exists["vidid"]:
-                    return await CallbackQuery.edit_message.text(_["admin_35"])
-                if current["file"] != exists["file"]:
-                    return await CallbackQuery.edit_message.text(_["admin_35"])
+                if current["musicid"] != exists["musicid"]:
+                    return await CallbackQuery.edit_message.text(_["admin_35"])                
             except:
                 return await CallbackQuery.edit_message_text(_["admin_36"])
             try:
