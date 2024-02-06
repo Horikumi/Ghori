@@ -38,11 +38,6 @@ async def rm_song(client, CallbackQuery, _):
                                   return await CallbackQuery.answer(
                                    _["remove_8"], show_alert=True
                     )   
-                loop = await get_loop(chat_id)
-                if loop != 0:
-                    return await CallbackQuery.answer(_["admin_8"], show_alert=True)
-                else:
-                    pass
                 check = db.get(chat_id)
                 if check:
                         count = len(check)
