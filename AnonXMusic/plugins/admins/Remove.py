@@ -10,7 +10,7 @@ from AnonXMusic.utils.database import get_loop, is_active_chat
 from AnonXMusic.utils.decorators import languageCB 
 from AnonXMusic.utils.stream.autoclear import auto_clean
 from AnonXMusic.utils.inline import close_markup, stream_markup
-from AnonXMusic.utils.thumbnails import gen_thumb
+from AnonXMusic.utils.thumbnails import get_thumb
                                               
 
 @app.on_callback_query(filters.regex("ClearSong") & ~BANNED_USERS)
