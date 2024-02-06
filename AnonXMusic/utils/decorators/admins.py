@@ -91,15 +91,13 @@ def AdminRightsCheck(mystic):
                             )
                             if chat_id not in confirmer:
                                 confirmer[chat_id] = {}
-                            try:
-                                vidid = db[chat_id][0]["vidid"]
-                                file = db[chat_id][0]["file"]
+                            try:                                
+                                musicid = db[chat_id][0]["musicid"]
                             except:
                                 return await message.reply_text(_["admin_14"])
                             senn = await message.reply_text(text, reply_markup=upl)
                             confirmer[chat_id][senn.id] = {
-                                "vidid": vidid,
-                                "file": file,
+                                "musicid": musicid,                             
                             }
                             return
                         else:
