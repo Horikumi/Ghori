@@ -103,10 +103,9 @@ async def del_back_playlist(client, CallbackQuery, _):
     except:
         if chat_id in checker:
             checker.remove(chat_id)
-        return await mystic.edit_text(_["admin_33"], reply_markup=close_markup(_))
+        return await mystic.edit_text(_["admin_33"])
     if chat_id in checker:
         checker.remove(chat_id)
     await mystic.edit_text(
-        text=_["admin_34"].format(speed, CallbackQuery.from_user.mention),
-        reply_markup=close_markup(_),
+        text=_["admin_34"].format(speed, CallbackQuery.from_user.mention),        
     )
