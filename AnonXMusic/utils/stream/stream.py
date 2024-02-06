@@ -103,7 +103,7 @@ async def stream(
                 img = await get_thumb(vidid)
                 db[chat_id][0]["musicid"] = shortuuid.uuid()[:5]
                 musicid = db[chat_id][0]["musicid"]
-                button = stream_markup(_, chat_id)
+                button = stream_markup(_, musicid, user_id, chat_id)
                 run = await app.send_photo(
                     original_chat_id,
                     photo=img,
@@ -164,7 +164,7 @@ async def stream(
             db[chat_id][position]["userinfo"] = user_id
             db[chat_id][position]["musicid"] = shortuuid.uuid()[:5]
             musicid = db[chat_id][position]["musicid"]
-            buttons = clearsong_markup(_, musicid, user_id, chat_id)
+            button = clearsong_markup(_, musicid, user_id, chat_id)
             await app.send_message(
                 chat_id=original_chat_id,
                 text=_["queue_4"].format(position, title[:27], duration_min, user_name),
@@ -230,8 +230,7 @@ async def stream(
             db[chat_id][position]["userinfo"] = user_id
             db[chat_id][position]["musicid"] = shortuuid.uuid()[:5]
             musicid = db[chat_id][position]["musicid"]
-            buttons = clearsong_markup(_, musicid, user_id, chat_id)
-            button = aq_markup(_, chat_id)
+            button = clearsong_markup(_, musicid, user_id, chat_id)      
             await app.send_message(
                 chat_id=original_chat_id,
                 text=_["queue_4"].format(position, title[:27], duration_min, user_name),
@@ -289,7 +288,7 @@ async def stream(
             db[chat_id][position]["userinfo"] = user_id
             db[chat_id][position]["musicid"] = shortuuid.uuid()[:5]
             musicid = db[chat_id][position]["musicid"]
-            buttons = clearsong_markup(_, musicid, user_id, chat_id)
+            button = clearsong_markup(_, musicid, user_id, chat_id)
             await app.send_message(
                 chat_id=original_chat_id,
                 text=_["queue_4"].format(position, title[:27], duration_min, user_name),
@@ -348,7 +347,7 @@ async def stream(
             db[chat_id][position]["userinfo"] = user_id
             db[chat_id][position]["musicid"] = shortuuid.uuid()[:5]
             musicid = db[chat_id][position]["musicid"]
-            buttons = clearsong_markup(_, musicid, user_id, chat_id)
+            button = clearsong_markup(_, musicid, user_id, chat_id)
             await app.send_message(
                 chat_id=original_chat_id,
                 text=_["queue_4"].format(position, title[:27], duration_min, user_name),
@@ -416,7 +415,7 @@ async def stream(
             db[chat_id][position]["userinfo"] = user_id
             db[chat_id][position]["musicid"] = shortuuid.uuid()[:5]
             musicid = db[chat_id][position]["musicid"]
-            buttons = clearsong_markup(_, musicid, user_id, chat_id)
+            button = clearsong_markup(_, musicid, user_id, chat_id)
             await mystic.edit_text(
                 text=_["queue_4"].format(position, title[:27], duration_min, user_name),
                 reply_markup=InlineKeyboardMarkup(button),
