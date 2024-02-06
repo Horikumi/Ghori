@@ -179,7 +179,7 @@ async def rm_song(client, CallbackQuery, _):
                                 except:
                                                 return await CallbackQuery.message.reply_text(_["call_6"])
                                 button = stream_markup(_, musicid, userinfo, chat_id)
-                                run = await message.reply_photo(
+                                run = await CallbackQuery.message.reply_photo(
                                                 photo=config.STREAM_IMG_URL,
                                                 caption=_["stream_2"].format(user),
                                                 reply_markup=InlineKeyboardMarkup(button),
