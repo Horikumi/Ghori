@@ -120,6 +120,7 @@ def PlayWrapper(command):
                 ): 
                   try:
                     await app.unban_chat_member(chat_id, userbot.id)
+                    return await message.reply_text("Assistant Unbanned, Try Playing again now")
                   except:
                     return await message.reply_text(
                         _["call_2"].format(
