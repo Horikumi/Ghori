@@ -103,35 +103,42 @@ async def rm_song(client, CallbackQuery, _):
                 user = check[0]["by"]
                 streamtype = check[0]["streamtype"]
                 videoid = check[0]["vidid"]
-                userinfo = check[0]["userinfo"]
-                musicid = check[0]["musicid"]
                 status = True if str(streamtype) == "video" else None
+                db[chat_id][0]["played"] = 0
+                exis = (check[0]).get("old_dur")
+                if exis:
+                                db[chat_id][0]["dur"] = exis
+                                db[chat_id][0]["seconds"] = check[0]["old_second"]
+                                db[chat_id][0]["speed_path"] = None
+                                db[chat_id][0]["speed"] = 1.0
                 if "live_" in queued:
                                 n, link = await YouTube.video(videoid, True)
                                 if n == 0:
-                                                return await CallbackQuery.message.reply_text(
-                                                                _["admin_11"].format(title)
-                                                )
+                                                return await message.reply_text(_["admin_7"].format(title))
                                 try:
-                                                await Yukki.skip_stream(chat_id, link, video=status)
-                                except Exception:
-                                                return await CallbackQuery.message.reply_text(_["call_9"])
-                                button = telegram_markup(_, musicid, userinfo, chat_id)
-                                img = await gen_thumb(videoid)
-                                run = await CallbackQuery.message.reply_photo(
+                                                image = await YouTube.thumbnail(videoid, True)
+                                except:
+                                                image = None
+                                try:
+                                                await Anony.skip_stream(chat_id, link, video=status, image=image)
+                                except:
+                                                return await message.reply_text(_["call_6"])
+                                button = stream_markup(_, chat_id)
+                                img = await get_thumb(videoid)
+                                run = await message.reply_photo(
                                                 photo=img,
                                                 caption=_["stream_1"].format(
-                                                                user,
                                                                 f"https://t.me/{app.username}?start=info_{videoid}",
+                                                                title[:23],
+                                                                check[0]["dur"],
+                                                                user,
                                                 ),
                                                 reply_markup=InlineKeyboardMarkup(button),
                                 )
                                 db[chat_id][0]["mystic"] = run
                                 db[chat_id][0]["markup"] = "tg"
                 elif "vid_" in queued:
-                                mystic = await CallbackQuery.message.reply_text(
-                                                _["call_10"], disable_web_page_preview=True
-                                )
+                                mystic = await message.reply_text(_["call_7"], disable_web_page_preview=True)
                                 try:
                                                 file_path, direct = await YouTube.download(
                                                                 videoid,
@@ -140,18 +147,24 @@ async def rm_song(client, CallbackQuery, _):
                                                                 video=status,
                                                 )
                                 except:
-                                                return await mystic.edit_text(_["call_9"])
+                                                return await mystic.edit_text(_["call_6"])
                                 try:
-                                                await Yukki.skip_stream(chat_id, file_path, video=status)
-                                except Exception:
-                                                return await mystic.edit_text(_["call_9"])
-                                button = stream_markup(_, videoid, musicid, userinfo, chat_id)
-                                img = await gen_thumb(videoid)
-                                run = await CallbackQuery.message.reply_photo(
+                                                image = await YouTube.thumbnail(videoid, True)
+                                except:
+                                                image = None
+                                try:
+                                                await Anony.skip_stream(chat_id, file_path, video=status, image=image)
+                                except:
+                                                return await mystic.edit_text(_["call_6"])
+                                button = stream_markup(_, chat_id)
+                                img = await get_thumb(videoid)
+                                run = await message.reply_photo(
                                                 photo=img,
                                                 caption=_["stream_1"].format(
-                                                                user,
                                                                 f"https://t.me/{app.username}?start=info_{videoid}",
+                                                                title[:23],
+                                                                check[0]["dur"],
+                                                                user,
                                                 ),
                                                 reply_markup=InlineKeyboardMarkup(button),
                                 )
@@ -160,11 +173,11 @@ async def rm_song(client, CallbackQuery, _):
                                 await mystic.delete()
                 elif "index_" in queued:
                                 try:
-                                                await Yukki.skip_stream(chat_id, videoid, video=status)
-                                except Exception:
-                                                return await CallbackQuery.message.reply_text(_["call_9"])
-                                button = telegram_markup(_, musicid, userinfo, chat_id)
-                                run = await CallbackQuery.message.reply_photo(
+                                                await Anony.skip_stream(chat_id, videoid, video=status)
+                                except:
+                                                return await message.reply_text(_["call_6"])
+                                button = stream_markup(_, chat_id)
+                                run = await message.reply_photo(
                                                 photo=config.STREAM_IMG_URL,
                                                 caption=_["stream_2"].format(user),
                                                 reply_markup=InlineKeyboardMarkup(button),
@@ -172,48 +185,57 @@ async def rm_song(client, CallbackQuery, _):
                                 db[chat_id][0]["mystic"] = run
                                 db[chat_id][0]["markup"] = "tg"
                 else:
-                                try:
-                                                await Yukki.skip_stream(chat_id, queued, video=status)
-                                except Exception:
-                                                return await CallbackQuery.message.reply_text(_["call_9"])
                                 if videoid == "telegram":
-                                                button = telegram_markup(_, musicid, userinfo, chat_id)
-                                                run = await CallbackQuery.message.reply_photo(
+                                                image = None
+                                elif videoid == "soundcloud":
+                                                image = None
+                                else:
+                                                try:
+                                                                image = await YouTube.thumbnail(videoid, True)
+                                                except:
+                                                                image = None
+                                try:
+                                                await Anony.skip_stream(chat_id, queued, video=status, image=image)
+                                except:
+                                                return await message.reply_text(_["call_6"])
+                                if videoid == "telegram":
+                                                button = stream_markup(_, chat_id)
+                                                run = await message.reply_photo(
                                                                 photo=config.TELEGRAM_AUDIO_URL
                                                                 if str(streamtype) == "audio"
                                                                 else config.TELEGRAM_VIDEO_URL,
-                                                                caption=_["stream_3"].format(
-                                                                                title, check[0]["dur"], user
+                                                                caption=_["stream_1"].format(
+                                                                                config.SUPPORT_CHAT, title[:23], check[0]["dur"], user
                                                                 ),
                                                                 reply_markup=InlineKeyboardMarkup(button),
                                                 )
                                                 db[chat_id][0]["mystic"] = run
                                                 db[chat_id][0]["markup"] = "tg"
                                 elif videoid == "soundcloud":
-                                                button = telegram_markup(_, musicid, userinfo, chat_id)
-                                                run = await CallbackQuery.message.reply_photo(
+                                                button = stream_markup(_, chat_id)
+                                                run = await message.reply_photo(
                                                                 photo=config.SOUNCLOUD_IMG_URL
                                                                 if str(streamtype) == "audio"
                                                                 else config.TELEGRAM_VIDEO_URL,
-                                                                caption=_["stream_3"].format(
-                                                                                title, check[0]["dur"], user
+                                                                caption=_["stream_1"].format(
+                                                                                config.SUPPORT_CHAT, title[:23], check[0]["dur"], user
                                                                 ),
                                                                 reply_markup=InlineKeyboardMarkup(button),
                                                 )
                                                 db[chat_id][0]["mystic"] = run
                                                 db[chat_id][0]["markup"] = "tg"
                                 else:
-                                                button = stream_markup(_, videoid, musicid, userinfo, chat_id)
-                                                img = await gen_thumb(videoid)
-                                                run = await CallbackQuery.message.reply_photo(
+                                                button = stream_markup(_, chat_id)
+                                                img = await get_thumb(videoid)
+                                                run = await message.reply_photo(
                                                                 photo=img,
                                                                 caption=_["stream_1"].format(
-                                                                                user,
                                                                                 f"https://t.me/{app.username}?start=info_{videoid}",
+                                                                                title[:23],
+                                                                                check[0]["dur"],
+                                                                                user,
                                                                 ),
                                                                 reply_markup=InlineKeyboardMarkup(button),
                                                 )
                                                 db[chat_id][0]["mystic"] = run
                                                 db[chat_id][0]["markup"] = "stream"
-                      
-          
