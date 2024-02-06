@@ -116,7 +116,7 @@ async def rm_song(client, CallbackQuery, _):
                 if "live_" in queued:
                                 n, link = await YouTube.video(videoid, True)
                                 if n == 0:
-                                                return await message.reply_text(_["admin_7"].format(title))
+                                                return await CallbackQuery.message.reply_text(_["admin_7"].format(title))
                                 try:
                                                 image = await YouTube.thumbnail(videoid, True)
                                 except:
