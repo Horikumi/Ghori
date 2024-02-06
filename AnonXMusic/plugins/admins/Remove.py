@@ -47,6 +47,7 @@ async def rm_song(client, CallbackQuery, _):
                                try:         
                                  if  vid == check[help]["musicid"]:
                                     acha = help
+                                    break
                                except:
                                   break
                         except:
