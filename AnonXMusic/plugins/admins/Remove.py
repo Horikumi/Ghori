@@ -6,7 +6,7 @@ from config import BANNED_USERS, adminlist
 from AnonXMusic import app, YouTube
 from AnonXMusic.core.call import Anony
 from AnonXMusic.misc import db, SUDOERS
-from AnonXMusic.utils.database import get_loop, is_active_chat
+from AnonXMusic.utils.database import is_active_chat
 from AnonXMusic.utils.decorators import languageCB 
 from AnonXMusic.utils.stream.autoclear import auto_clean
 from AnonXMusic.utils.inline import close_markup, stream_markup
