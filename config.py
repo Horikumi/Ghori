@@ -11,10 +11,10 @@ API_ID = int(getenv("API_ID", 6))
 API_HASH = getenv("API_HASH", "eb06d4abfb49dc3eeb1aeb98ae0f581e")
 
 # Get your token from @BotFather on Telegram.
-BOT_TOKEN = getenv("BOT_TOKEN", "5281020570:AAFZ0AAFYrlZj4_ZSfL7HVFDaaAVvywQJdw")
+BOT_TOKEN = getenv("BOT_TOKEN", "5561110589:AAG0Wg1z0G1zD1HjaYPrRiP4Qu6ZmoF5zps")
 
 # Get your mongo url from cloud.mongodb.com
-MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://Draco:Draco@cluster0.nrqle.mongodb.net/?retryWrites=true&w=majority")
+MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://video:video@cluster0.suiny.mongodb.net/?retryWrites=true&w=majority")
 
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 10))
 
@@ -32,9 +32,9 @@ HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/Horikumi/Anon",
+    "https://github.com/PuneetStar/Anon",
 )
-UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
+UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "Test")
 GIT_TOKEN = getenv(
     "GIT_TOKEN", None
 )  # Fill this variable if your upstream repository is private
@@ -61,10 +61,10 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", 1073741824))
 # Checkout https://www.gbmb.org/mb-to-bytes for converting mb to bytes
 
 
-# Get your pyrogram v2 session from @StringFatherBot on Telegram
-STRING1 = getenv("STRING_SESSION", "BQASceIAaTQm6CtfHmZ_S1xmF4NLvurZyHsN5bsUHAuF5pJAko8xtjQmvJb1U4oAdjeO60wZQvuNP5kbe_w5h0kFavM-qHyD1RI1mx-Q6la0YILHMxhKdxcXjMR6YSQRUxb4po0DmmTKhKtjm-dcf3Il049i54WI9jmkgeG_MA38LQTz2p_NKq-iW2su2xS_kOwoSF99zfWsmbHL8gb0w8VTRLPiSXnlUhr2EnABVkxZbji7jQVnDdC5BFynBfLrvUSC0xg6gmH_z2hH3ArrmipTkuLgbIjMIjKByMEr8ZkBbDUiPt_PLU9yG7irh-VpUpxHCTvpqH796VHo5mwoREbL8fGx3gAAAAF2BS1SAA")
-STRING2 = getenv("STRING_SESSION2", "AQGds_MAIXdHpX5nY83ygalE7GQuGTJZ1dG95IwE6rsfc9yxXZCmk8iKsLrghfX7BwkTVBYXJvwQqm9WcU8-s-TA_UzjTbDO3K8DbWKIFsTC5sZIaefs9hZCq8eATm1CkMUaZU-nQ5FUvwD60wRvPWVY3m1_NaHrU8NEvE4PKm4rquJ0NEUuuLh_RDkRTOWIGCtjapvVhfTTCc0us2f6QpNtFrPK4e_y005xaOQ4R6MVsDvaSRj-nxrj_uM8yEjIcvVugqpk09sE5_nN6mNicSLpad2MUf4zitnR3fs_Slg6je58Tt4dygb3KZK3E9IhBUbm1TNmErnSIDF2wLpSxtB_gfVeoAAAAAE9HQwhAA")
-STRING3 = getenv("STRING_SESSION3", "BQGHGBsAp1gLMvHXvfpAOImTSgD8i6qkQ9Zi0Tw13XZYsEOfIkqZYjrxfQXLZcQ2dc-3-j5Of_lM6DTagR2eCJH8eUhgUytan90I41kxZaaEJqNXYW1KOKcTh6t84Ucjl1P3gLAiDzby1SY6it6heKeC9RBbgqVHu7jmjhrF-yKoI6YOPQwy-QII7Fh5v8Xr_B8XgkwKCAf5wpVigyzLLmhmJBz7DWJXG4AHU838KwPXleKAWFyM7K7S94vhE_LxEyqKmjtcQWDhDsCioOwnLJo-ILlWFveQ5ZsgP7FRKf-rRXFe8-sqe_aIVD58xdZ1s30c0rS57pcvERx6if5Bx13TV9rTUgAAAAFv-tKOAA")
+# Get your pyrogram v2 session from @botfather on Telegram
+STRING1 = getenv("STRING_SESSION", "BAFphGIAIQq9xKBe3ia6KsRYZ8tKGwyV7dRNTd99jm_czN1c73h-NDJElUvzykVPno-X45uoraT6q3N2L_LYOXqDESGfpjBfIOYMpKZd2P0ZhQB7DvZJ1zhbBcqD0xvuSgB-RXnFK8fHMtotjNxBHpJ8ccPLF69TP4IVzde2jaCweMt9Gv889xdvoFf9g70p-bQPngEqrc7MWXTBrllR48cspPMDjiaFbF3d0chAHGpxd8q9bCh6DpaGW4QPkPVuwE-i446S02dL2IghEGDeSSrzmbYfMJNcoscL22AdNMAtMm16QtexoyEBKYjG5c9ZLk-Ls3Lierg-inZawUAsuwPqQSyg-wAAAAGJ8EyHAA")
+STRING2 = getenv("STRING_SESSION2", None)
+STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
 STRING5 = getenv("STRING_SESSION5", None)
 

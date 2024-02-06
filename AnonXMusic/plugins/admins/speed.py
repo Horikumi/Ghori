@@ -7,7 +7,7 @@ from AnonXMusic.misc import SUDOERS, db
 from AnonXMusic.utils import AdminRightsCheck
 from AnonXMusic.utils.database import is_active_chat, is_nonadmin_chat
 from AnonXMusic.utils.decorators.language import languageCB
-from AnonXMusic.utils.inline import close_markup, speed_markup
+from AnonXMusic.utils.inline import speed_markup
 from config import BANNED_USERS, adminlist
 
 checker = []
@@ -103,10 +103,9 @@ async def del_back_playlist(client, CallbackQuery, _):
     except:
         if chat_id in checker:
             checker.remove(chat_id)
-        return await mystic.edit_text(_["admin_33"], reply_markup=close_markup(_))
+        return await mystic.edit_text(_["admin_33"])
     if chat_id in checker:
         checker.remove(chat_id)
     await mystic.edit_text(
-        text=_["admin_34"].format(speed, CallbackQuery.from_user.mention),
-        reply_markup=close_markup(_),
+        text=_["admin_34"].format(speed, CallbackQuery.from_user.mention),        
     )
