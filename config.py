@@ -7,8 +7,8 @@ from pyrogram import filters
 load_dotenv()
 
 # Get this value from my.telegram.org/apps
-API_ID = int(getenv("API_ID", 6))
-API_HASH = getenv("API_HASH", "eb06d4abfb49dc3eeb1aeb98ae0f581e")
+API_ID = int(getenv("API_ID", "16521527"))
+API_HASH = getenv("API_HASH", "9212f7ea8457d82b06104b958eac81ff")
 
 # Get your token from @BotFather on Telegram.
 BOT_TOKEN = getenv("BOT_TOKEN", "5281020570:AAFZ0AAFYrlZj4_ZSfL7HVFDaaAVvywQJdw")
@@ -62,7 +62,7 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", 1073741824))
 
 
 # Get your pyrogram v2 session from @StringFatherBot on Telegram
-STRING1 = getenv("STRING_SESSION", "BQGHGBsATrTXsedHkuao3YacqVuib-33OaVRBv6VR5SBAruRBFkfZitg9to1h-ACMPoUmF7UhCPmcxUd77E4SH_8tKK0EgyIQkvXmto4wEPIegGw2lh2h97xSvGqM1v7xogXZxqj_VjxqKFg0Z_nQzdx3GBMfR-8_lrOp6GTuSNCqWGu0SQNsq1yNJH-KnLBiAzMDc4zRBkuns6XiyoROBerYPiXKhFMWD8xY9ykhYdXkmQS92jjKztbP7S_JoR5TRtYHYYz6z-iPdw8mRp_GPAHuQ-rB_SfO21-yZc0QvV0EDaap2RWfNd6pB2YXQtAfs7pBczFXAvl9JQR_WD4B3byr39WjQAAAAFv-tKOAA")
+STRING1 = getenv("STRING_SESSION", "AQD8GTcAZWzslriTnDw6d9f2t4HkVOg3fU5us68cgn222iOf2rx5JixaO1x9toc9__liI4YsXxcXPULjFOjwVnssgkELIGG3RBmy4Urgo62FyBj-gsJgnXunSgA35R0eoRjmDZtRuKDx2sKTyZ-ULUSWpLM4E3HjJKrRq9p0tuvVi41oxpr4BTRDoO2W56nzjP9SG7Rhqnwv4NaY3imZxBRMCrYmcu0zJoqWENFDiNn0EsdWaVoBYeXzlRYjRJ5Is7P-VsS8dXUS7_S2aS5Z4tSzOwYHk2aJnwrHCnYHpYP9TUZxftcT4pSh3uXijv7r5FE_I626R-UxzNJUasDGujU8z9j-_gAAAAEzHL6XAA")
 STRING2 = getenv("STRING_SESSION2", "BQASceIATAHnabMq3RaomQuGlXmLWvRW-UdcywdcRRjHVddf5UbkBCFjpadrj_tWSn68NUxLBfm2o_FQAaSG8MjQfWwXOL5v4HoUflw-z5WAvdUXF8s-3GfnTZTjBXdG4WB35dYwgQ1Gb1dyHzwDorPjXmKaxRL9Tbs_tsVr8xqosYiolva86P68hxhLCrUueZbDdrhGDcoIAYWthrNCYrbRih2NrB7YRg7mOP3aimEDOU5xr1YN8-d0dZ_UD1QIldQ6OD9tuSKsxpU8d1cwuYq4iHzqteqs7ldejbuecXOZGSjZxnxSLhwA2ZBo6_X4gf49bcy8kjlZGZY5ni3eqVXSRqaKiQAAAAF2BS1SAA")
 STRING3 = getenv("STRING_SESSION3", "AQASceIAxG7k2qVpKrAvno85q-FhZWRMKn9aVPvnlNX-5NUYFo4Q7M0dWrQ6AXLpvGQVsKqpEKcPT2KxnRrXw7nLiepCgIhVIFn-g0GdHIx3IRNBunj073joW_VdPSdQBPbkPvOSqJTD2ihlYdyuP2EStjhbogZR96cPyAFLWs03QwmH5m4E14Ep7irkFahV5WA9UBChl7nqjMnjcUzufzTNgWu2Fjg_Lx7kY74CxqEpNqzsfyA29cmRD_TwtGWQ8g0Nne2-o7jxWMPg1-RsKwjQH-4nYZOkUVo6FqMDiCrH7fxza6qJ51MBPvQtyK1CYkzllhTIb8ZcJjSFHtozBoQShnHi2QAAAAE9HQwhAA")
 STRING4 = getenv("STRING_SESSION4", None)
