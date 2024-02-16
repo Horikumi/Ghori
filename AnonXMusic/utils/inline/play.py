@@ -11,10 +11,6 @@ def track_markup(_, videoid, user_id, channel, fplay):
                 text=_["P_B_1"],
                 callback_data=f"MusicStream {videoid}|{user_id}|a|{channel}|{fplay}",
             ),
-            InlineKeyboardButton(
-                text=_["P_B_2"],
-                callback_data=f"MusicStream {videoid}|{user_id}|v|{channel}|{fplay}",
-            ),
         ],
         [
             InlineKeyboardButton(
@@ -91,10 +87,6 @@ def playlist_markup(_, videoid, user_id, ptype, channel, fplay):
                 text=_["P_B_1"],
                 callback_data=f"AnonyPlaylists {videoid}|{user_id}|{ptype}|a|{channel}|{fplay}",
             ),
-            InlineKeyboardButton(
-                text=_["P_B_2"],
-                callback_data=f"AnonyPlaylists {videoid}|{user_id}|{ptype}|v|{channel}|{fplay}",
-            ),
         ],
         [
             InlineKeyboardButton(
@@ -134,10 +126,6 @@ def slider_markup(_, videoid, user_id, query, query_type, channel, fplay):
             InlineKeyboardButton(
                 text=_["P_B_1"],
                 callback_data=f"MusicStream {videoid}|{user_id}|a|{channel}|{fplay}",
-            ),
-            InlineKeyboardButton(
-                text=_["P_B_2"],
-                callback_data=f"MusicStream {videoid}|{user_id}|v|{channel}|{fplay}",
             ),
         ],
         [
