@@ -38,6 +38,13 @@ playmode = {}
 playtype = {}
 skipmode = {}
 
+async def is_video_allowed(chat_id):
+    count = len(await get_active_video_chats())
+    if int(count) == 5:
+        if not await is_active_video_chat(chat_id):
+            return False
+    return True
+
 
 async def get_assistant_number(chat_id: int) -> str:
     assistant = assistantdict.get(chat_id)
