@@ -74,14 +74,11 @@ async def braodcast_message(client, message, _):
                     except:
                         continue
                 sent += 1
-                await asyncio.sleep(0.2)
             except FloodWait as fw:
                 flood_time = int(fw.value)
-                if flood_time > 200:
-                    continue
                 await asyncio.sleep(flood_time)
             except:
-                continue
+                pass
         try:
             await message.reply_text(_["broad_3"].format(sent, pin))
         except:
@@ -101,11 +98,8 @@ async def braodcast_message(client, message, _):
                     else await app.send_message(i, text=query)
                 )
                 susr += 1
-                await asyncio.sleep(0.2)
             except FloodWait as fw:
                 flood_time = int(fw.value)
-                if flood_time > 200:
-                    continue
                 await asyncio.sleep(flood_time)
             except:
                 pass
