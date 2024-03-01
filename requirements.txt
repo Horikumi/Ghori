@@ -24,3 +24,5 @@ git+https://github.com/yt-dlp/yt-dlp.git
 youtube-search
 youtube-search-python
 shortuuid
+gunicorn 
+flask
