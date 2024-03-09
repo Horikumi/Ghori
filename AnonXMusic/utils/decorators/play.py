@@ -153,7 +153,7 @@ def PlayWrapper(command):
                     )
                 myu = await message.reply_text(_["call_4"].format(app.mention))
                 try:
-                    await asyncio.sleep(1)
+                    await asyncio.sleep(2)
                     await userbot.join_chat(invitelink)
                 except InviteRequestSent:
                     try:
