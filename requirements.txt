@@ -10,9 +10,9 @@ heroku3
 motor
 pillow
 psutil
-py-tgcalls==0.9.7
+py-tgcalls==1.2.9
 pykeyboard
-pyrogram==2.0.106
+git+https://github.com/PyrogramMod/PyrogramMod
 python-dotenv
 pyyaml
 requests
@@ -24,3 +24,4 @@ git+https://github.com/yt-dlp/yt-dlp.git
 youtube-search
 youtube-search-python
 shortuuid
+ntgcalls==1.3.3
