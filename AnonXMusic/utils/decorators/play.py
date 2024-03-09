@@ -110,6 +110,11 @@ def PlayWrapper(command):
         if not await is_active_chat(chat_id):
             userbot = await get_assistant(chat_id)
             try:
+                await app.unban_chat_member(chat_id, userbot.id)
+                await asyncio.sleep(1)
+            except:
+                pass
+            try:
                 try:
                     get = await app.get_chat_member(chat_id, userbot.id)
                 except ChatAdminRequired:
@@ -117,11 +122,7 @@ def PlayWrapper(command):
                 if (
                     get.status == ChatMemberStatus.BANNED
                     or get.status == ChatMemberStatus.RESTRICTED
-                ): 
-                  try:
-                    await app.unban_chat_member(chat_id, userbot.id)
-                    return await message.reply_text("Assistant Unbanned, Try Playing again now")
-                  except:
+                ):              
                     return await message.reply_text(
                         _["call_2"].format(
                             app.mention, userbot.id, userbot.name, userbot.username
