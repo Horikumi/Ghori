@@ -24,4 +24,4 @@ git+https://github.com/yt-dlp/yt-dlp.git
 youtube-search
 youtube-search-python
 shortuuid
-ntgcalls==1.3.3
+ntgcalls==1.1.3
