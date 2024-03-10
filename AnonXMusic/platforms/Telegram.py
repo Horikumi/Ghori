@@ -142,18 +142,9 @@ class TeleAPI:
                         eta = "0 sec"
                     total_size = convert_bytes(total)
                     completed_size = convert_bytes(current)
-                    speed = convert_bytes(speed)
-                    text = f"""
-**{app.mention} Telegram Media Downloader**
-
-**Total FileSize:** {total_size}
-**Completed:** {completed_size} 
-**Percentage:** {percentage[:5]}%
-
-**Speed:** {speed}/s
-**ETA:** {eta}"""
+                    speed = convert_bytes(speed)               
                     try:
-                        await mystic.edit_text(text, reply_markup=upl, parse_mode=enums.ParseMode.DEFAULT)
+                        await mystic.edit_text(text=_["tg_1"].format(app.mention, total_size, completed_size, percentage[:5], speed, eta), reply_markup=upl)                                
                     except:
                         pass
                     left_time[
@@ -169,12 +160,12 @@ class TeleAPI:
                     file_name=fname,
                     progress=progress,
                 )
-                await mystic.edit_text(
-                    "Successfully Downloaded.. Processing file now"
-                )
-                downloader.pop(message.id)
+                await asyncio.sleep(2)
+                await mystic.edit_text("SuccessFully Downloaded, Processing file plz wait")
             except:
-                await mystic.edit_text(_["tg_2"])
+                await mystic.edit_text(_["tg_3"])
+            finally:
+                downloader.pop(message.id, None)
 
         if len(downloader) > 10:
             timers = []
@@ -185,7 +176,7 @@ class TeleAPI:
                 eta = get_readable_time(low)
             except:
                 eta = "Unknown"
-            await mystic.edit_text(_["tg_1"].format(eta))
+            await mystic.edit_text(f"Bot is overloaded with downloads right now\n\nplz try after {eta}")
             return False
 
         task = asyncio.create_task(down_load())
