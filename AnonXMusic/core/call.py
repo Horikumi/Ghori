@@ -224,7 +224,7 @@ class Call(PyTgCalls):
         if bot_privileges and bot_privileges.can_manage_video_chats and bot_privileges.can_promote_members:
             userbot = await get_assistant(chat_id)
             assistant_privileges = (await app.get_chat_member(chat_id, userbot.id)).privileges           
-            if not assistant_privileges or (assistant_privileges and not assistant_privileges.can_manage_video_chats:
+            if not assistant_privileges or (assistant_privileges and not assistant_privileges.can_manage_video_chats):
                 await app.promote_chat_member(chat_id, userbot.id, ChatPrivileges(can_manage_video_chats=True))
       except FloodWait as e:
         await asyncio.sleep(int(e.value))
