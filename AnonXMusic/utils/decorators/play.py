@@ -24,8 +24,6 @@ from AnonXMusic.utils.inline import botplaylist_markup
 from config import PLAYLIST_IMG_URL, SUPPORT_CHAT, adminlist
 from strings import get_string
 
-links = {}
-
 
 def PlayWrapper(command):
     async def wrapper(client, message):
@@ -128,17 +126,14 @@ def PlayWrapper(command):
                             app.mention, userbot.id, userbot.name, userbot.username
                         )
                     )
-            except UserNotParticipant:
-                if chat_id in links:
-                    invitelink = links[chat_id]
-                else:
-                    if message.chat.username:
+            except UserNotParticipant:                 
+                if message.chat.username:
                         invitelink = message.chat.username
                         try:
                             await userbot.resolve_peer(invitelink)
                         except:
                             pass
-                    else:
+                else:
                         try:
                             invitelink = await app.export_chat_invite_link(chat_id)
                         except ChatAdminRequired:
@@ -171,8 +166,6 @@ def PlayWrapper(command):
                     return await message.reply_text(
                         _["call_3"].format(app.mention, type(e).__name__)
                     )
-
-                links[chat_id] = invitelink
 
                 try:
                     await userbot.resolve_peer(chat_id)
