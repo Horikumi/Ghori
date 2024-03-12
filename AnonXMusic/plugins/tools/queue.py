@@ -1,12 +1,13 @@
 import asyncio
 import os
+from random import randint
 
 from pyrogram import filters
 from pyrogram.errors import FloodWait
 from pyrogram.types import CallbackQuery, InputMediaPhoto, Message
 
 import config
-from AnonXMusic import app
+from AnonXMusic import app, Carbon
 from AnonXMusic.misc import db
 from AnonXMusic.utils import AnonyBin, get_channeplayCB, seconds_to_min
 from AnonXMusic.utils.database import get_cmode, is_active_chat, is_music_playing
@@ -176,8 +177,8 @@ async def queued_tracks(client, CallbackQuery: CallbackQuery, _):
             return await CallbackQuery.edit_message_text(msg, reply_markup=buttons)
         if "✨" in msg:
             msg = msg.replace("✨", "")
-        link = await AnonyBin(msg)
-        med = InputMediaPhoto(media=link, caption=_["queue_3"].format(link))
+        carbon = await Carbon.generate(msg, randint(100, 10000000))
+        med = InputMediaPhoto(media=carbon)
         await CallbackQuery.edit_message_media(media=med, reply_markup=buttons)
     else:
         await asyncio.sleep(1)
