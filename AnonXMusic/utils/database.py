@@ -86,7 +86,17 @@ async def set_assistant(chat_id):
     userbot = await get_client(ran_assistant)
     return userbot
 
-
+async def net_assistant(ran_assistant, chat_id):
+    from AnonXMusic.core.userbot import assistants
+    assistantdict[chat_id] = ran_assistant
+    await assdb.update_one(
+        {"chat_id": chat_id},
+        {"$set": {"assistant": ran_assistant}},
+        upsert=True,
+    )
+    userbot = await get_client(ran_assistant)
+    return userbot
+    
 async def get_assistant(chat_id: int) -> str:
     from AnonXMusic.core.userbot import assistants
 
