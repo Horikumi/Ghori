@@ -43,6 +43,7 @@ counter = {}
 
 
 async def _clear_(chat_id):
+    await auto_clean(db.get(chat_id).pop(len(db.get(chat_id)) - 1)) if db.get(chat_id) else None
     db[chat_id] = []
     await remove_active_video_chat(chat_id)
     await remove_active_chat(chat_id)
