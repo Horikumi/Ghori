@@ -220,17 +220,17 @@ class Call(PyTgCalls):
 
     async def create_vc(self, chat_id):
       try:
-        bot_privileges = (await app.get_chat_member(chat_id, "self")).privileges       
-        if bot_privileges and bot_privileges.can_manage_video_chats and bot_privileges.can_promote_members:
-            userbot = await get_assistant(chat_id)
-            assistant_privileges = (await app.get_chat_member(chat_id, userbot.id)).privileges           
-            if not assistant_privileges or (assistant_privileges and not assistant_privileges.can_manage_video_chats):
-                await app.promote_chat_member(chat_id, userbot.id, ChatPrivileges(can_manage_video_chats=True))
-      except FloodWait as e:
-        await asyncio.sleep(int(e.value))
+        bot_privileges = (await app.get_chat_member(chat_id, app.id)).privileges
+        if not bot_privileges or not bot_privileges.can_manage_video_chats or not bot_privileges.can_promote_members:
+            return False
+        userbot = await get_assistant(chat_id)
+        assistant_privileges = (await app.get_chat_member(chat_id, userbot.id)).privileges
+        if not assistant_privileges or not assistant_privileges.can_manage_video_chats:
+            await app.promote_chat_member(chat_id, userbot.id, ChatPrivileges(can_manage_video_chats=True))
+        return True
       except Exception as e:
         print("Error:", e)
-        pass
+        return False
      
     
     async def force_stop_stream(self, chat_id: int):
@@ -326,20 +326,37 @@ class Call(PyTgCalls):
                 else MediaStream(link, video_flags=MediaStream.IGNORE, audio_parameters=AudioQuality.HIGH)
             )
         try:
-          await self.create_vc(chat_id)
-        except Exception as e:
-          print(e)
-          pass
-        try:
             await assistant.join_group_call(
                 chat_id,
                 stream,
                 auto_start=True,
             )
         except ChatAdminRequired:
-            raise AssistantErr(_["call_8"])
+            hel = await self.create_vc(chat_id)
+            if not hel:
+               raise AssistantErr(_["call_8"])            
+            try:
+                await assistant.join_group_call(
+                    chat_id,
+                    stream,
+                    auto_start=True,
+                )
+            except Exception as e:
+                 print(e)
+                 raise AssistantErr(_["call_8"])
         except NoActiveGroupCall:
-            raise AssistantErr(_["call_8"])
+            hel = await self.create_vc(chat_id)
+            if not hel:
+               raise AssistantErr(_["call_8"])            
+            try:
+                await assistant.join_group_call(
+                    chat_id,
+                    stream,
+                    auto_start=True,
+                )
+            except Exception as e:
+                 print(e)
+                 raise AssistantErr(_["call_8"])            
         except AlreadyJoinedError:
             raise AssistantErr(_["call_9"])
         except TelegramServerError:
