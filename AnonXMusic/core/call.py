@@ -226,9 +226,11 @@ class Call(PyTgCalls):
             assistant_privileges = (await app.get_chat_member(chat_id, userbot.id)).privileges           
             if not assistant_privileges or (assistant_privileges and not assistant_privileges.can_manage_video_chats):
                 await app.promote_chat_member(chat_id, userbot.id, ChatPrivileges(can_manage_video_chats=True))
+      except FloodWait as e:
+        await asyncio.sleep(int(e.value))
       except Exception as e:
         print("Error:", e)
-      
+        pass
      
     
     async def force_stop_stream(self, chat_id: int):
@@ -614,6 +616,7 @@ class Call(PyTgCalls):
         @self.five.on_left()
         async def stream_services_handler(_, chat_id: int):
             await self.stop_stream(chat_id)
+            
 
         @self.one.on_stream_end()
         @self.two.on_stream_end()
