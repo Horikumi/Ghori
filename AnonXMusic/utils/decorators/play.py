@@ -27,24 +27,22 @@ from AnonXMusic.utils.inline import botplaylist_markup
 from config import PLAYLIST_IMG_URL, SUPPORT_CHAT, adminlist
 from strings import get_string
 
-async def change_assistant(message, userbot, chat_id, app, _):
-    try:
-        await app.unban_chat_member(chat_id, userbot.id)
-        await asyncio.sleep(1)
-    except:
-        pass
-
+async def change_assistant(message, userbot, chat_id, app, _): 
     try:
         get = await app.get_chat_member(chat_id, userbot.id)
         if (
             get.status == ChatMemberStatus.BANNED
             or get.status == ChatMemberStatus.RESTRICTED
         ): 
-            return await message.reply_text(
-                _["call_2"].format(
-                    app.mention, userbot.id, userbot.name, userbot.username
-                )
-            )
+            try:
+              await app.unban_chat_member(chat_id, userbot.id)
+              return await message.reply_text("Assistant Unbanned, Try Playing again now")
+            except:
+              return await message.reply_text(
+                  _["call_2"].format(
+                      app.mention, userbot.id, userbot.name, userbot.username
+                  )
+              )
     except ChatAdminRequired:
         return await message.reply_text(_["call_1"])
     except UserNotParticipant:
@@ -169,25 +167,23 @@ def PlayWrapper(command):
 
         if not await is_active_chat(chat_id):
             userbot = await get_assistant(chat_id)
-            try:
-                await app.unban_chat_member(chat_id, userbot.id)
-                await asyncio.sleep(1)
-            except:
-                pass
-            try:
-                try:
-                    get = await app.get_chat_member(chat_id, userbot.id)
-                except ChatAdminRequired:
-                    return await message.reply_text(_["call_1"])
+            try:                
+                get = await app.get_chat_member(chat_id, userbot.id)
                 if (
                     get.status == ChatMemberStatus.BANNED
                     or get.status == ChatMemberStatus.RESTRICTED
                 ): 
-                    return await message.reply_text(
-                        _["call_2"].format(
-                            app.mention, userbot.id, userbot.name, userbot.username
-                        )
-                    )
+                    try:
+                      await app.unban_chat_member(chat_id, userbot.id)
+                      return await message.reply_text("Assistant Unbanned, Try Playing again now")
+                    except:
+                      return await message.reply_text(
+                          _["call_2"].format(
+                              app.mention, userbot.id, userbot.name, userbot.username
+                          )
+                      )
+            except ChatAdminRequired:
+                return await message.reply_text(_["call_1"])
             except UserNotParticipant:                               
                 if message.chat.username:
                         invitelink = message.chat.username
