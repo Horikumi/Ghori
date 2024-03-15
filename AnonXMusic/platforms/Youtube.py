@@ -243,4 +243,32 @@ class YouTubeAPI:
                direct = None             
         else:
             direct = True
+        link = await get_video_url(link)
         return link, direct
+
+async def get_video_url(link):
+    try:
+        # Run the yt-dlp command asynchronously and capture its output
+        command = ["yt-dlp", "-g", "-f", "best", link]
+        process = await asyncio.create_subprocess_exec(*command, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+        
+        # Wait for the process to complete and capture its stdout
+        stdout, stderr = await process.communicate()
+        
+        # Check if the process exited successfully
+        if process.returncode == 0:
+            # Extract the video URL from the stdout
+            video_url = stdout.decode().strip()
+            return video_url
+        else:
+            print("Error:", stderr.decode())
+            return None
+    except Exception as e:
+        print("Error:", e)
+        return None
+
+
+        
+
+
+
