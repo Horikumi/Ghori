@@ -13,7 +13,7 @@ psutil
 py-tgcalls
 ntgcalls
 pykeyboard
-pyrogram==2.0.106
+git+https://github.com/PyrogramMod/PyrogramMod
 python-dotenv
 pyyaml
 requests
