@@ -10,8 +10,7 @@ heroku3
 motor
 pillow
 psutil
-py-tgcalls
-ntgcalls
+py-tgcalls==0.9.7
 pykeyboard
 pyrogram==2.0.106
 python-dotenv
@@ -21,7 +20,7 @@ speedtest-cli
 spotipy
 tgcrypto
 unidecode
-git+https://github.com/yt-dlp/yt-dlp.git
+yt-dlp
 youtube-search
 youtube-search-python
 shortuuid
