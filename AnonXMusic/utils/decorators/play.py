@@ -201,11 +201,7 @@ def PlayWrapper(command):
                 except Exception as e:
                     return await message.reply_text(
                         _["call_3"].format(app.mention, type(e).__name__)
-                    )
-                try:
-                    await userbot.resolve_peer(chat_id)
-                except:
-                    pass
+                    )   
 
         return await command(
             client,
