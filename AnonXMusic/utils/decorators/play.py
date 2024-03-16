@@ -220,12 +220,12 @@ def PlayWrapper(command):
                     await myu.edit(_["call_5"].format(app.mention))
                 except UserAlreadyParticipant:
                     pass
-                except FloodWait:             
-                       current_id = await get_assistant_number(chat_id)
-                       different_assistants = [assistant_id for assistant_id in assistants if assistant_id != current_id]
-                       new = random.choice(different_assistants)
-                       ok = await net_assistant(new, chat_id)
-                       await change_assistant(message, ok, chat_id, app, _)                   
+          #      except FloodWait:             
+          #             current_id = await get_assistant_number(chat_id)
+           #            different_assistants = [assistant_id for assistant_id in assistants if assistant_id != current_id]
+          #             new = random.choice(different_assistants)
+           #            ok = await net_assistant(new, chat_id)
+           #            await change_assistant(message, ok, chat_id, app, _)                   
                 except Exception as e:
                     return await message.reply_text(
                         _["call_3"].format(app.mention, type(e).__name__)
