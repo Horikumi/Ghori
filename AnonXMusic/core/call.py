@@ -329,34 +329,10 @@ class Call(PyTgCalls):
             await assistant.join_group_call(
                 chat_id,
                 stream,
-                auto_start=True,
+                auto_start=False,
             )
-        except ChatAdminRequired:
-            hel = await self.create_vc(chat_id)
-            if not hel:
-               raise AssistantErr(_["call_8"])            
-            try:
-                await assistant.join_group_call(
-                    chat_id,
-                    stream,
-                    auto_start=True,
-                )
-            except Exception as e:
-                 print(e)
-                 raise AssistantErr(_["call_8"])
-        except NoActiveGroupCall:
-            hel = await self.create_vc(chat_id)
-            if not hel:
-               raise AssistantErr(_["call_8"])            
-            try:
-                await assistant.join_group_call(
-                    chat_id,
-                    stream,
-                    auto_start=True,
-                )
-            except Exception as e:
-                 print(e)
-                 raise AssistantErr(_["call_8"])            
+        except NoActiveGroupCall:           
+            raise AssistantErr(_["call_8"])            
         except AlreadyJoinedError:
             raise AssistantErr(_["call_9"])
         except TelegramServerError:
