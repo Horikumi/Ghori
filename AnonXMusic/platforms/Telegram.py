@@ -162,9 +162,10 @@ class TeleAPI:
                 )
                 await asyncio.sleep(1)
                 await mystic.edit_text("SuccessFully Downloaded, Processing file plz wait")
+                downloader.pop(message.id)
             except:
                 await mystic.edit_text(_["tg_3"])  
-            downloader.pop(message.id, False)
+            
 
         if len(downloader) > 10:
             timers = []
@@ -193,3 +194,4 @@ class TeleAPI:
         except:
            downloader.pop(message.id, False)
            config.lyrical.pop(mystic.id, False)
+           return False
