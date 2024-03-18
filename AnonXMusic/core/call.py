@@ -292,7 +292,7 @@ class Call(PyTgCalls):
         await assistant.join_group_call(
             config.LOGGER_ID,
             MediaStream(link),
-            auto_start=True,
+            auto_start=False,
             
         )
         await asyncio.sleep(0.5)
