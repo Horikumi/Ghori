@@ -41,11 +41,27 @@ from strings import get_string
 autoend = {}
 counter = {}
 
-
+"""
 async def _clear_(chat_id):
     db[chat_id] = []
     await remove_active_video_chat(chat_id)
     await remove_active_chat(chat_id)
+"""
+
+async def _clear_(chat_id):
+    try:
+       check = db.get(chat_id)
+       if check:
+            for position in range(len(check) - 1, -1, -1):
+                popped = check.pop(position)     
+                if popped:
+                    await auto_clean(popped)
+    except:
+      pass
+    db[chat_id] = []
+    await remove_active_video_chat(chat_id)
+    await remove_active_chat(chat_id)
+
 
 
 class Call(PyTgCalls):
