@@ -60,6 +60,13 @@ class TeleAPI:
             )
         return file_name
 
+    async def get_duration(self, file):
+        try:
+            dur = seconds_to_min(file.duration)
+        except:
+            dur = "Unknown"
+        return dur
+
     async def get_duration(self, filex, file_path):
         try:
             dur = seconds_to_min(filex.duration)
@@ -72,7 +79,7 @@ class TeleAPI:
             except:
                 return "Unknown"
         return dur
-
+      
     async def get_filepath(
         self,
         audio: Union[bool, str] = None,
@@ -160,12 +167,12 @@ class TeleAPI:
                     file_name=fname,
                     progress=progress,
                 )
-                await asyncio.sleep(2)
+                await asyncio.sleep(1)
                 await mystic.edit_text("SuccessFully Downloaded, Processing file plz wait")
+                downloader.pop(message.id)
             except:
-                await mystic.edit_text(_["tg_3"])
-            finally:
-                downloader.pop(message.id, None)
+                await mystic.edit_text(_["tg_3"])  
+            
 
         if len(downloader) > 10:
             timers = []
@@ -178,16 +185,20 @@ class TeleAPI:
                 eta = "Unknown"
             await mystic.edit_text(f"Bot is overloaded with downloads right now\n\nplz try after {eta}")
             return False
-
-        task = asyncio.create_task(down_load())
-        config.lyrical[mystic.id] = task
-        await task
-        downloaded = downloader.get(message.id)
-        if downloaded:
-            downloader.pop(message.id)
-            return False
-        verify = config.lyrical.get(mystic.id)
-        if not verify:
-            return False
-        config.lyrical.pop(mystic.id)
-        return True
+        try:
+           task = asyncio.create_task(down_load())
+           config.lyrical[mystic.id] = task
+           await task
+           downloaded = downloader.get(message.id)
+           if downloaded:
+               downloader.pop(message.id)
+               return False
+           verify = config.lyrical.get(mystic.id)
+           if not verify:
+               return False
+           config.lyrical.pop(mystic.id)
+           return True
+        except:
+           downloader.pop(message.id, False)
+           config.lyrical.pop(mystic.id, False)
+           return False
