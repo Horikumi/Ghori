@@ -313,34 +313,43 @@ class YouTubeAPI:
             x.download([link])
 
         if songvideo:
-            await loop.run_in_executor(None, song_video_dl)
-            fpath = f"downloads/{title}.mp4"
-            return fpath
+            try:
+                await loop.run_in_executor(None, song_video_dl)
+                fpath = f"downloads/{title}.mp4"
+                return fpath
+            except Exception as e:
+            	print(e)
+            	return link
+            	
         elif songaudio:
-            await loop.run_in_executor(None, song_audio_dl)
-            fpath = f"downloads/{title}.mp3"
-            return fpath
+            try:
+                await loop.run_in_executor(None, song_audio_dl)
+                fpath = f"downloads/{title}.mp3"
+                return fpath
+            except Exception as e:
+            	print(e)
+            	return link
         elif video:
-            if await is_on_off(1):
-                direct = True
-                downloaded_file = await loop.run_in_executor(None, video_dl)
-            else:
-                proc = await asyncio.create_subprocess_exec(
-                    "yt-dlp",
-                    "-g",
-                    "-f",
-                    "best[height<=?720][width<=?1280]",
-                    f"{link}",
-                    stdout=asyncio.subprocess.PIPE,
-                    stderr=asyncio.subprocess.PIPE,
-                )
-                stdout, stderr = await proc.communicate()
-                if stdout:
-                    downloaded_file = stdout.decode().split("\n")[0]
+            try:
+                 if await is_on_off(1):
+                       direct = True
+                       downloaded_file = await loop.run_in_executor(None, video_dl)
+                 else:
+                    downloaded_file = link
                     direct = None
-                else:
-                    return
+            except Exception as e:
+               	print(e)
+               	downloaded_file = link
+               	direct = None
         else:
             direct = True
-            downloaded_file = await loop.run_in_executor(None, audio_dl)
+            try:             
+                downloaded_file = await loop.run_in_executor(None, audio_dl)
+            except Exception as e:
+            	print(e)
+            	downloaded_file = link
         return downloaded_file, direct
+
+
+
+
