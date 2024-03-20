@@ -43,10 +43,26 @@ counter = {}
 
 
 async def _clear_(chat_id):
+    try:
+       check = db.get(chat_id)
+       if check:
+            position = len(check) - 1
+            popped = check.pop(position)
+            if popped:
+               await auto_clean(popped)
+    except:
+      pass
     db[chat_id] = []
     await remove_active_video_chat(chat_id)
     await remove_active_chat(chat_id)
 
+
+"""
+async def _clear_(chat_id):
+    db[chat_id] = []
+    await remove_active_video_chat(chat_id)
+    await remove_active_chat(chat_id)
+"""
 
 class Call(PyTgCalls):
     def __init__(self):
