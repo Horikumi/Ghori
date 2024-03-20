@@ -293,7 +293,7 @@ class Call(PyTgCalls):
             AudioVideoPiped(link),
             stream_type=StreamType().pulse_stream,
         )
-        await asyncio.sleep(0.2)
+        await asyncio.sleep(1)
         await assistant.leave_group_call(config.LOGGER_ID)
 
     async def join_call(
