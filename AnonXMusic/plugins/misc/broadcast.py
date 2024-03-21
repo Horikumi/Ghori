@@ -22,12 +22,8 @@ IS_BROADCASTING = False
 
 @app.on_message(filters.command("broadcast") & SUDOERS)
 @language
-async def braod_message(client, message, _):
-      asyncio.create_task(braodcast_message(client, app, messaage, _))
-
-
-async def braodcast_message(client, app, message, _):
- #   global IS_BROADCASTING
+async def braodcast_message(client, message, _):
+    global IS_BROADCASTING
     if message.reply_to_message:
         x = message.reply_to_message.id
         y = message.chat.id
@@ -48,7 +44,7 @@ async def braodcast_message(client, app, message, _):
         if query == "":
             return await message.reply_text(_["broad_8"])
 
-#    IS_BROADCASTING = True
+    IS_BROADCASTING = True
     await message.reply_text(_["broad_1"])
 
     if "-nobot" not in message.text:
@@ -141,7 +137,7 @@ async def braodcast_message(client, app, message, _):
             await aw.edit_text(text)
         except:
             pass
- #   IS_BROADCASTING = False
+    IS_BROADCASTING = False
 
 
 async def auto_clean():
