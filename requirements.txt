@@ -12,7 +12,7 @@ pillow
 psutil
 py-tgcalls==0.9.7
 pykeyboard
-pyrogram==2.0.106
+pyrofork
 python-dotenv
 pyyaml
 requests
@@ -20,7 +20,7 @@ speedtest-cli
 spotipy
 tgcrypto
 unidecode
-yt-dlp==2023.10.13
+git+https://github.com/yt-dlp/yt-dlp@master
 youtube-search
 youtube-search-python
 shortuuid
