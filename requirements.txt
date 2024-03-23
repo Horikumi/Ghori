@@ -10,10 +10,9 @@ heroku3
 motor
 pillow
 psutil
-py-tgcalls
-ntgcalls
+py-tgcalls==0.9.7
 pykeyboard
-pyrofork
+pyrogram
 python-dotenv
 pyyaml
 requests
