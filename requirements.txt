@@ -21,7 +21,7 @@ speedtest-cli
 spotipy
 tgcrypto
 unidecode
-git+https://github.com/yt-dlp/yt-dlp@master
+yt-dlp==2023.10.13
 youtube-search
 youtube-search-python
 shortuuid
